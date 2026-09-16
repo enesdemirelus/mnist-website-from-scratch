@@ -34,7 +34,6 @@ def forward_prop(W1, B1, W2, B2, X):
     A2 = softmax_calc(Z2)
     return Z1, A1, Z2, A2
 
-
 def one_hot_converter(Y):
     one_hot_Y = np.zeros((Y.size, Y.max() + 1))
     one_hot_Y[np.arange(Y.size), Y] = 1
@@ -78,6 +77,7 @@ def gradient_descent(X, Y, alpha, iter_count):
     return W1, B1, W2, B2
     
 W1, B1, W2, B2 = gradient_descent(X_train, Y_train, 0.5, 500)
+np.savez('apps/ml/mnist_weights.npz', W1=W1, B1=B1, W2=W2, B2=B2)
 
 
 # test_data = pd.read_csv('apps/ml/dataset/mnist_test.csv')

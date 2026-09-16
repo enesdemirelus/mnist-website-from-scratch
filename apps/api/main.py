@@ -1,10 +1,14 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Body
 import numpy as np
+import os
 
 
 app = FastAPI()
-weights = np.load('apps/ml/model/mnist_weights.npz')
+script_dir = os.path.dirname(os.path.abspath(__file__))
+weights_path = os.path.join(script_dir, "..", "ml", "mnist_weights.npz")
+weights = np.load(weights_path)
 W1, B1, W2, B2 = weights['W1'], weights['B1'], weights['W2'], weights['B2']
+
 
 def ReLU(X):
     return np.maximum(X, 0)
